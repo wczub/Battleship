@@ -44,7 +44,7 @@ public class Player{
                     
                     // Throws an exception in they didn't enter a letter that is on the grid
                     if (row < 'a' || row > 'j')
-                        throw;
+                        throw 12;
                     
                     // Breaks out of the while loop with proper input
                     break;
@@ -62,7 +62,7 @@ public class Player{
                     
                     // Throws exception if they entered a number that is too small or too large
                     if (x < 1 || x > 10)
-                        throw;
+                        throw 13;
                     
                     // Breaks out of the while loop with proper input
                     break;

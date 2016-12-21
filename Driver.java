@@ -26,7 +26,7 @@ public class Driver{
             try{
                 temp = scanner.nextInt();
                 if (temp != 1 && temp != 2)
-                    throw;
+                    throw 10;
                 
             } catch(Exception e){
                 System.out.println("Error: Invalid input!\nPlease enter a 1 or a 2 only.");
@@ -53,7 +53,7 @@ public class Driver{
                 temp = Character.toLowerCase(temp);
                 
                 if (temp != "y" && temp != "n")
-                    throw;
+                    throw 11;
                     
             } catch (Exception e){
                 System.out.println("Error: Invalid input!\nPlease enter a 'y' or an 'n' only.");
