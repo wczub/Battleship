@@ -9,18 +9,30 @@ public class Player{
     private Board primary;
     private Ship ship[5];
     private int shipsLeft;
+    private String name;
     
     Player(){
         shipsLeft = 5;
         tracking = new Board();
         primary = new Board();
         placeShips();
+        name = "Player";
         
     }
     
+    Player(String name){
+        shipsLeft = 5;
+        tracking = new Board();
+        primary = new Board();
+        placeShips();
+        this.name = name;
+    }
+    
+    // function that handles most everything for placing ships. 
     private void placeShips(){
         
-        System.out.print("Player 1: Please place your ships")
+        System.out.print("%s: Please place your ships")
+        primary.print();
         ship[0] = new Ship("Carrier", 5);
         ship[1] = new Ship("Battleship", 4);
         ship[2] = new Ship("Cruiser", 3);
@@ -37,7 +49,7 @@ public class Player{
                 int x, y, ori;
                 Scanner scanner = new Scanner(System.in);
                 
-                System.out.printf("Please enter the left/top most spot for %s which is %d spots long.", ship[i].getName(), ship[i].getSize());
+                System.out.printf("Please enter the top-left most spot for %s which is %d spots long.", ship[i].getName(), ship[i].getSize());
                 
                 // Loops until they enter a proper row letter. 
                 while(true){
@@ -109,10 +121,15 @@ public class Player{
                 
                 
             // checks to makes sure that the placement is valid
-            }while(setcheck(x, y, ori, ship[i].getSize());
+            }while(setCheck(x, y, ori, ship[i].getSize());
+            
             // If the code gets to here it means the user entered input properly for all three fields
-            // and sets the placement of the ship.
-            ship[i].setSpot(x, y, ori;      
+            // and the placement is in a valid location then it sets the placement of the ship.
+            ship[i].setSpot(x, y, ori);  
+            setShip(x, y, ori);
+            
+            System.out.println("Here is your updated board!");
+            primary.print();
               
         }
         
@@ -120,11 +137,21 @@ public class Player{
     
     // helper function to see if once the user has found the spot all the fields are free
     // and that it doesn't hang off the edge of the board.
-    private boolean setcheck(int x, int y, int ori, int size){
+    private boolean setCheck(int x, int y, int ori, int size){
+        
+        // Checks to see if the ship hangs off the edge of the board.
+        if ((ori == 0 && (y + size) >= 10) || (ori == 1 && (x + size) >= 10){
+            System.out.println("Error: Ship placment hangs off of grid.");
+            return false;
+        }
         
         for (int i = 0; i < size; i++){
-            if (!primary.checkEmpty(x, y)
+            
+            // if any of the spots are taken, then it returns false
+            if (!primary.checkEmpty(x, y){
+                System.out.println("Error: Another ship is placed in the same location.");
                 return false;
+            }
             
             // if ori is 0 it means verticle so it changes the y value
             // else if it changes the x value for horizotal.
@@ -135,10 +162,10 @@ public class Player{
             
         }
         
-        if ((ori == 0 && (y + size) >= 10) || (ori == 1 && (x + size) >= 10)
-            return false;
         return true;
     }
         
-    
+    public boolean lose(){
+        return (shipsLeft == 0);
+    }
 }
