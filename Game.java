@@ -10,8 +10,6 @@ public class Game{
     
     Game(int x){
         
-        
-        
         String name = "";
         
         Scanner scanner = new Scanner(System.in);
@@ -31,6 +29,7 @@ public class Game{
         }
     }  
     
+    // Starts the game for two player
     public void startTwo(){
         
         boolean p1Win = false, p2Win = false;
@@ -44,7 +43,7 @@ public class Game{
             if (p1Win) 
                 break;
             
-            turn(1)
+            turn(1);
             p2Win = p1.lose();
             if (p2Win)
                 break;
@@ -61,7 +60,32 @@ public class Game{
     
     public void startComp(){
         
+        boolean p1Win = false, cWin = false;
+        
+        while (true){
+            
+            // a player takes a turn, and sees if the other player lost
+            // if the other player lost, then it breaks the loop
+            turn(0);
+            p1Win = c.lose();
+            if (p1Win) 
+                break;
+            
+            compTurn();
+            cWin = p1.lose();
+            if (cWin)
+                break;
+            
+        }
+        
+        if (p1Win){
+            System.out.printf("Congratulations %s! You beat the computer!\n", % p1.getName());
+        } else {
+            System.out.printf("Oh no! You lost to the computer!\n");
+        }
     }
     
-    
+    private void turn(int x){
+        
+    }   
 }
