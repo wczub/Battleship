@@ -66,7 +66,7 @@ public class Game{
             
             // a player takes a turn, and sees if the other player lost
             // if the other player lost, then it breaks the loop
-            turn(0);
+            turn(2);
             p1Win = c.lose();
             if (p1Win) 
                 break;
@@ -85,7 +85,27 @@ public class Game{
         }
     }
     
-    private void turn(int x){
+    private void turn(int person){
+        // if 0 is passed in, player1 takes a turn
+        // if 1 is passed in, player2 takes a turn
+        // if 2 is passed in, player1 is against a computer
+        int coords[] = new int [2];
+        
+        if (person == 0){
+            
+            coords = p1.turn();
+            p2.updateTrack(coords[0], coords[1]);
+            
+        } else if (person == 1){
+            
+            coords = p2.turn();
+            p1.updateTrack(coords[0], coords[1]);
+        } else if (person == 2){
+            
+            coords = p1.turn();
+            c.updateTrack(coords[0], coords[1]);
+        }
+        
         
     }   
 }
