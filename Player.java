@@ -13,8 +13,8 @@ public class Player{
     
     Player(){
         shipsLeft = 5;
-        tracking = new Board();
-        primary = new Board();
+        tracking = new Board("Tracking");
+        primary = new Board("Primary");
         placeShips();
         name = "Player";
         
@@ -51,50 +51,9 @@ public class Player{
                 
                 System.out.printf("Please enter the top-left most spot for %s which is %d spots long.", ship[i].getName(), ship[i].getSize());
                 
-                // Loops until they enter a proper row letter. 
-                while(true){
-                    
-                    try{
-                        System.out.print("Please enter the row (a-j):");
-                        row = Character.toLowerCase(scanner.next(".").charAt(0));
-                        
-                        // Throws an exception in they didn't enter a letter that is on the grid
-                        if (row < 'a' || row > 'j')
-                            throw 12;
-                            
-                        // If it makes it past the throw command, it converts the char into a number
-                        for (int k = 0; k < 10; k++){
-                            if (findRow[k] == row){
-                                y = k;
-                                break;
-                            }
-                        }
-                        
-                        // Breaks out of the while loop with proper input
-                        break;
-                    } catch(Exception e){
-                        System.out.println("Error: Invalid input!\nPlease enter a letter from A-J!");
-                    }
-                }
+                y = getRow();
                 
-                // Looops until they enter a proper column number
-                while(true){
-                    
-                    try{
-                        System.out.print("Please enter the column number (1-10):");
-                        x = scanner.nextInt();
-                        
-                        // Throws exception if they entered a number that is too small or too large
-                        if (x < 1 || x > 10)
-                            throw 13;
-                        
-                        // Breaks out of the while loop with proper input
-                        break;
-                    } catch(Exception e){
-                        System.out.println("Error: Invalid input!\nPlease enter a number from 1-10!");
-                    }
-                    
-                }
+                x = getColumn();
                 
                 // Looops until they enter a proper column number
                 while(true){
@@ -168,4 +127,76 @@ public class Player{
     public boolean lose(){
         return (shipsLeft == 0);
     }
+    
+    public int[] turn(){
+        
+        int coords = new int [2];
+        boolean endTurn = true;
+        tracking.print();
+        System.out.println();
+        primary.print();
+        
+        do {
+            System.out.print("It is your turn! ");
+            coords[1] = getRow();
+            coords[0] = getColumn();
+            
+        } while (!endturn)
+    }
+}
+
+
+private int getRow(){
+    
+    // Loops until they enter a proper row letter. 
+    while(true){
+        int y = 0;
+        char row;
+        try{
+            System.out.print("Please enter the row (a-j):");
+            row = Character.toLowerCase(scanner.next(".").charAt(0));
+            
+            // Throws an exception in they didn't enter a letter that is on the grid
+            if (row < 'a' || row > 'j')
+                throw 12;
+                
+            // If it makes it past the throw command, it converts the char into a number
+            for (int k = 0; k < 10; k++){
+                if (findRow[k] == row){
+                    y = k;
+                    break;
+                }
+            }
+            
+            // Breaks out of the while loop with proper input
+            break;
+        } catch(Exception e){
+            System.out.println("Error: Invalid input!\nPlease enter a letter from A-J!");
+        }
+    }
+    
+    return y;
+}
+
+private int getColumn(){
+    int x;
+    // Looops until they enter a proper column number
+    while(true){
+        
+        try{
+            System.out.print("Please enter the column number (1-10):");
+            x = scanner.nextInt();
+            
+            // Throws exception if they entered a number that is too small or too large
+            if (x < 1 || x > 10)
+                throw 13;
+            
+            // Breaks out of the while loop with proper input
+            break;
+        } catch(Exception e){
+            System.out.println("Error: Invalid input!\nPlease enter a number from 1-10!");
+        }
+        
+    }
+    return x;
 }
