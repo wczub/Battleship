@@ -2,6 +2,7 @@ public class Board{
     
     private int grid[10][10];
     private static char key[];
+    private String name;
     
     static { 
         // This is used to print out the grid in a visualized manner for the user
@@ -9,7 +10,7 @@ public class Board{
         key = new char[7] {",", "A", "B", "C", "S", "D", "H"};
     }
     
-    Board(){
+    Board(String name){
         // Initializes the whole board to zeros, which in the key is the blank space
         // which is denoted by the ',' symbol.
         for (int i = 0; i < 10; i++){
@@ -17,6 +18,7 @@ public class Board{
                 grid[i][j] = 0;
             }
         }
+        this.name = name;
     }
     
     // Prints the grid out, and I will update this later.
@@ -25,6 +27,7 @@ public class Board{
         char letter[] = new char {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'}; 
         
         // prints out the numbers for the top of the grid
+        System.out.println(name + " grid.")
         System.out.print("  ");
         for (int i = 0; i < 10; i++)
             System.out.printf("%d ", % i);
