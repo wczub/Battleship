@@ -6,34 +6,18 @@ public class Driver{
     public static void main(String[] args){
         
         do{
+            welcome();
             Game g;
-            g.start(welcome());
+            g.start();
         }while(replay());
         
     }
     
-    public int welcome(){
-        int temp = 0;
-        // This will print out a better welcome message later
+    public welcome(){
+        
         System.out.print("Welcome to Battlefield!");
         
-        // Loops until they choose either 1 or 2.
-        while (true){
-            System.out.println("What game mode would you like to play?\n1: Single Player\n2: Two Player");
-            
-            Scanner scanner = new Scanner(System.in);
-            
-            try{
-                temp = scanner.nextInt();
-                if (temp != 1 && temp != 2)
-                    throw 10;
-                
-            } catch(Exception e){
-                System.out.println("Error: Invalid input!\nPlease enter a 1 or a 2 only.");
-            }
-        
-            return temp;
-        }
+        return;
     }
     
     // Asks if the user wants to play the game again
