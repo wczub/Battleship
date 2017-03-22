@@ -15,6 +15,11 @@ public class Player{
         shipsLeft = 5;
         tracking = new Board("Tracking");
         primary = new Board("Primary");
+        ship[0] = new Ship("Carrier", 5);
+        ship[1] = new Ship("Battleship", 4);
+        ship[2] = new Ship("Cruiser", 3);
+        ship[3] = new Ship("Submarine", 3);
+        ship[4] = new Ship("Destroyer", 2);
         placeShips();
         name = "Player";
         
@@ -24,6 +29,11 @@ public class Player{
         shipsLeft = 5;
         tracking = new Board();
         primary = new Board();
+        ship[0] = new Ship("Carrier", 5);
+        ship[1] = new Ship("Battleship", 4);
+        ship[2] = new Ship("Cruiser", 3);
+        ship[3] = new Ship("Submarine", 3);
+        ship[4] = new Ship("Destroyer", 2);
         placeShips();
         this.name = name;
     }
@@ -33,11 +43,7 @@ public class Player{
         
         System.out.print("%s: Please place your ships")
         primary.print();
-        ship[0] = new Ship("Carrier", 5);
-        ship[1] = new Ship("Battleship", 4);
-        ship[2] = new Ship("Cruiser", 3);
-        ship[3] = new Ship("Submarine", 3);
-        ship[4] = new Ship("Destroyer", 2);
+        
         
         char findRow[10] = new char {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'}
         
@@ -143,60 +149,72 @@ public class Player{
             
         } while (!endturn)
     }
-}
 
+    // Checks to see if a ship is hit, and updates everything.
+    public void shotFired(int x, int y){
+        
+        for (int i = 0; i < 5; i++){
+            if (ship[i].checkHit(x, y)){
+                System.out.printf("Computer has hit your %s!", ship[i].getName());
+                primary.update(x, y, 7);
+                break;
+            }
+        }
+        
+    }
 
-private int getRow(){
+    private int getRow(){
     
-    // Loops until they enter a proper row letter. 
-    while(true){
-        int y = 0;
-        char row;
-        try{
-            System.out.print("Please enter the row (a-j):");
-            row = Character.toLowerCase(scanner.next(".").charAt(0));
-            
-            // Throws an exception in they didn't enter a letter that is on the grid
-            if (row < 'a' || row > 'j')
-                throw 12;
+        // Loops until they enter a proper row letter. 
+        while(true){
+            int y = 0;
+            char row;
+            try{
+                System.out.print("Please enter the row (a-j):");
+                row = Character.toLowerCase(scanner.next(".").charAt(0));
                 
-            // If it makes it past the throw command, it converts the char into a number
-            for (int k = 0; k < 10; k++){
-                if (findRow[k] == row){
-                    y = k;
-                    break;
+                // Throws an exception in they didn't enter a letter that is on the grid
+                if (row < 'a' || row > 'j')
+                    throw 12;
+                    
+                // If it makes it past the throw command, it converts the char into a number
+                for (int k = 0; k < 10; k++){
+                    if (findRow[k] == row){
+                        y = k;
+                        break;
+                    }
                 }
+                
+                // Breaks out of the while loop with proper input
+                break;
+            } catch(Exception e){
+                System.out.println("Error: Invalid input!\nPlease enter a letter from A-J!");
+            }
+        }
+        
+        return y;
+    }
+
+    private int getColumn(){
+        int x;
+        // Looops until they enter a proper column number
+        while(true){
+            
+            try{
+                System.out.print("Please enter the column number (1-10):");
+                x = scanner.nextInt();
+                
+                // Throws exception if they entered a number that is too small or too large
+                if (x < 1 || x > 10)
+                    throw 13;
+                
+                // Breaks out of the while loop with proper input
+                break;
+            } catch(Exception e){
+                System.out.println("Error: Invalid input!\nPlease enter a number from 1-10!");
             }
             
-            // Breaks out of the while loop with proper input
-            break;
-        } catch(Exception e){
-            System.out.println("Error: Invalid input!\nPlease enter a letter from A-J!");
         }
+        return x;
     }
-    
-    return y;
-}
-
-private int getColumn(){
-    int x;
-    // Looops until they enter a proper column number
-    while(true){
-        
-        try{
-            System.out.print("Please enter the column number (1-10):");
-            x = scanner.nextInt();
-            
-            // Throws exception if they entered a number that is too small or too large
-            if (x < 1 || x > 10)
-                throw 13;
-            
-            // Breaks out of the while loop with proper input
-            break;
-        } catch(Exception e){
-            System.out.println("Error: Invalid input!\nPlease enter a number from 1-10!");
-        }
-        
-    }
-    return x;
 }
