@@ -27,9 +27,10 @@ public class Game{
         
         while (true){
             
-            // a player takes a turn, and sees if the other player lost
-            // if the other player lost, then it breaks the loop
-            turn(2);
+            // a player takes a turn, and sees if the computer lost
+            // if the computer lost, then it breaks the loop 
+            
+            turn();
             p1Win = c.lose();
             if (p1Win) 
                 break;
@@ -41,34 +42,30 @@ public class Game{
             
         }
         
-        if (p1Win){
+        if (p1Win && !cWin){
             System.out.printf("Congratulations %s! You beat the computer!\n", % p1.getName());
-        } else {
+        } else if (!p1win && cWin){
             System.out.printf("Oh no! You lost to the computer!\n");
+        } else {
+            System.out.printf("The game has broken!")
         }
     }
     
-    private void turn(int person){
-        // if 0 is passed in, player1 takes a turn
-        // if 1 is passed in, player2 takes a turn
-        // if 2 is passed in, player1 is against a computer
+    private void turn(){
+        
         int coords[] = new int [2];
         
-        if (person == 0){
-            
-            coords = p1.turn();
-            p2.updateTrack(coords[0], coords[1]);
-            
-        } else if (person == 1){
-            
-            coords = p2.turn();
-            p1.updateTrack(coords[0], coords[1]);
-        } else if (person == 2){
-            
-            coords = p1.turn();
-            c.updateTrack(coords[0], coords[1]);
-        }
+        coords = p1.turn();
+        c.updateBoard(coords[0], coords[1]);
         
+    }
+    
+    private void compTurn(){
         
-    }   
+        int coords[] = new int[2];
+        
+        coords = c.turn();
+        p1.updateBoard(coords[0], coords[1]);
+        
+    }
 }
