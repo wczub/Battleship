@@ -48,6 +48,7 @@ public class Ship{
         
     }
     
+    // Returns true if hit, False if it missed
     public boolean checkHit(int xCo, int yCo){
         
         // checks to make sure that the numbers are possible then it loops
