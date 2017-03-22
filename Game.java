@@ -56,7 +56,7 @@ public class Game{
         int coords[] = new int [2];
         
         coords = p1.turn();
-        c.updateBoard(coords[0], coords[1]);
+        c.shotFired(coords[0], coords[1]);
         
     }
     
@@ -65,7 +65,7 @@ public class Game{
         int coords[] = new int[2];
         
         coords = c.turn();
-        p1.updateBoard(coords[0], coords[1]);
+        p1.shotFired(coords[0], coords[1]);
         
     }
 }
