@@ -21,7 +21,7 @@ public class Player{
         ship[3] = new Ship("Submarine", 3);
         ship[4] = new Ship("Destroyer", 2);
         placeShips();
-        name = "Player";
+        name = "Player 1";
         
     }
     
@@ -119,7 +119,7 @@ public class Player{
             }
             
             // if ori is 0 it means verticle so it changes the y value
-            // else if it changes the x value for horizotal.
+            // else it changes the x value for horizotal.
             if (ori == 0)
                 y++;
             else 
@@ -127,6 +127,7 @@ public class Player{
             
         }
         
+        // If it passes all the checks, then it's safe to place the ship
         return true;
     }
         
