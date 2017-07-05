@@ -138,17 +138,22 @@ public class Player{
     public int[] turn(){
         
         int coords = new int [2];
-        boolean endTurn = true;
+        boolean endTurn = false;
         tracking.print();
         System.out.println();
         primary.print();
-        
+        System.out.println("It is your turn! ");
         do {
-            System.out.print("It is your turn! ");
-            coords[1] = getRow();
-            coords[0] = getColumn();
             
-        } while (!endturn)
+            coords[0] = getRow();
+            coords[1] = getColumn();
+            
+            // If the player doesn't choose an empty spot, then they have to enter a new spot
+            if (tracking.checkEmpty(coords[0], coords[1]))
+                endTurn = true;
+            else
+                System.out.println("Error: You have already fired there.")
+        } while (endTurn)
     }
 
     // Checks to see if a ship is hit, and updates everything.
