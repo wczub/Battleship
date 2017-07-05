@@ -58,6 +58,7 @@ public class Game{
         // Gets the coordinates from the player 
         coords = p1.turn();
         c.shotFired(coords[0], coords[1]);
+        // Make shotFired return the resulting value wheather it's a hit or miss
         
     }
     
