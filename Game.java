@@ -55,6 +55,7 @@ public class Game{
         
         int coords[] = new int [2];
         
+        // Gets the coordinates from the player 
         coords = p1.turn();
         c.shotFired(coords[0], coords[1]);
         
