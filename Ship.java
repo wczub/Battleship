@@ -29,6 +29,11 @@ public class Ship{
         return size;
     }
     
+    // Returns the number for the letter of the ship for the baord
+    public int getLetter(){
+        return letter;
+    }
+    
     // sets the initial spot for the ships
     public void setSpot(int xStart, int yStart, int ori){
         
