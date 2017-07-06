@@ -15,11 +15,11 @@ public class Player{
         shipsLeft = 5;
         tracking = new Board("Tracking");
         primary = new Board("Primary");
-        ship[0] = new Ship("Carrier", 5);
-        ship[1] = new Ship("Battleship", 4);
-        ship[2] = new Ship("Cruiser", 3);
-        ship[3] = new Ship("Submarine", 3);
-        ship[4] = new Ship("Destroyer", 2);
+        ship[0] = new Ship("Carrier", 5, 1);
+        ship[1] = new Ship("Battleship", 4, 2);
+        ship[2] = new Ship("Cruiser", 3, 3);
+        ship[3] = new Ship("Submarine", 3, 4);
+        ship[4] = new Ship("Destroyer", 2, 5);
         placeShips();
         name = "Player 1";
         
@@ -27,13 +27,13 @@ public class Player{
     
     Player(String name){
         shipsLeft = 5;
-        tracking = new Board();
-        primary = new Board();
-        ship[0] = new Ship("Carrier", 5);
-        ship[1] = new Ship("Battleship", 4);
-        ship[2] = new Ship("Cruiser", 3);
-        ship[3] = new Ship("Submarine", 3);
-        ship[4] = new Ship("Destroyer", 2);
+        tracking = new Board("Tracking");
+        primary = new Board("Primary");
+        ship[0] = new Ship("Carrier", 5, 1);
+        ship[1] = new Ship("Battleship", 4, 2);
+        ship[2] = new Ship("Cruiser", 3, 3);
+        ship[3] = new Ship("Submarine", 3, 4);
+        ship[4] = new Ship("Destroyer", 2, 4);
         placeShips();
         this.name = name;
     }
@@ -91,7 +91,7 @@ public class Player{
             // If the code gets to here it means the user entered input properly for all three fields
             // and the placement is in a valid location then it sets the placement of the ship.
             ship[i].setSpot(x, y, ori);  
-            setShip(x, y, ori);
+            primary.setShip(x, y, ori, ship[i].size());
             
             System.out.println("Here is your updated board!");
             primary.print();
