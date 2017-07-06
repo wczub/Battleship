@@ -6,8 +6,8 @@ public class Board{
     
     static { 
         // This is used to print out the grid in a visualized manner for the user
-        // Order goes: blank, carrier, battleship, cruiser, submarine, destroyer, hit
-        key = new char[7] {",", "A", "B", "C", "S", "D", "H"};
+        // Order goes: blank, carrier, battleship, cruiser, submarine, destroyer, hit, Miss
+        key = new char[7] {",", "A", "B", "C", "S", "D", "H", "M"};
     }
     
     Board(String name){
