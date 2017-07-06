@@ -55,4 +55,18 @@ public class Board{
         return grid[y][x] == 0;
     }
     
+    public void setShip(int x, int y, int ori, int size, int ship){
+        
+        for (int i = 0; i < size; i++){
+            grid[y][x] == ship;
+            
+            // if the orientation is set to verticle (0) then the y value gets increased
+            // otherwise if it is set to horizontal (1) then the x value gets increased
+            if (ori == 0)
+                y++;
+            else
+                x++;    
+        }
+    }
+    
 }
