@@ -3,19 +3,20 @@ public class Ship{
     
     // size holds the overall size of the ship
     // life holds how many more hits it can take
-    private int size, life;
+    private int size, life, letter;
     private String name;
     
     // together the two arraylists create the coordinates for the ship
     private ArrayList<int> x;
     private ArrayList<int> y;
     
-    Ship(String name, int size){
+    Ship(String name, int size, int letter){
         this.name = name;
         this.size = size;
         life = size;
         x = new ArrayList<int> (size);
         y = new ArrayList<int> (size);
+        this.letter = letter;
     }
     
     // returns the name of the ship
