@@ -91,7 +91,7 @@ public class Player{
             // If the code gets to here it means the user entered input properly for all three fields
             // and the placement is in a valid location then it sets the placement of the ship.
             ship[i].setSpot(x, y, ori);  
-            primary.setShip(x, y, ori, ship[i].size());
+            primary.setShip(x, y, ori, ship[i].size(), ship[i].getLetter());
             
             System.out.println("Here is your updated board!");
             primary.print();

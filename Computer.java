@@ -59,7 +59,7 @@ public class Computer{
             } while(nextShip);
             
             ship[i].setSpot(x, y, ori);
-            primary.setShip(x, y, ori, ship[i].size());
+            primary.setShip(x, y, ori, ship[i].size(), ship[i].getLetter());
         }
         
     }
