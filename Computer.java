@@ -5,14 +5,14 @@ public class Computer{
     
     private Board tracking;
     private Board primary;
-    private Ship ship[5];
+    private Ship[] ship = new Ship[5];
     private int shipsLeft;
     
     
     Computer(){
         
-        tracking = new Board();
-        primary = new Board();
+        tracking = new Board("Tracking");
+        primary = new Board("Primary");
         shipsLeft = 5;
         ship[0] = new Ship("Carrier", 5, 1);
         ship[1] = new Ship("Battleship", 4, 2);
@@ -28,15 +28,20 @@ public class Computer{
         
         for (int i = 0; i < 5; i++){
             boolean nextShip = true;
+            int x, y, ori;
             do {
-                int x, y, ori;
+                
                 ori = r.nextInt(100) % 2;
                 
                 // 0 = verticle, 1 = horizontal
-                if (ori == 0)
+                if (ori == 0){
                     y = r.nextInt(9-ship[i].getSize());
-                else
-                    x = r.nextInt(9-ship[i].getSize());    
+                    x = r.nextInt(10);
+                }
+                else{
+                    y = r.nextInt(10);
+                    x = r.nextInt(9-ship[i].getSize());
+                }
                 
                 for (int j = 0; j < ship[i].getSize(); j++){
                     
@@ -51,7 +56,7 @@ public class Computer{
                         
                     // if the orientation is set to verticle (0) then the y value gets increased
                     // otherwise if it is set to horizontal (1) then the x value gets increased                    if (ori == 0)
-                    if
+                    if(ori == 0)
                         yy++;
                     else
                         xx++;
@@ -59,9 +64,16 @@ public class Computer{
             } while(nextShip);
             
             ship[i].setSpot(x, y, ori);
-            primary.setShip(x, y, ori, ship[i].size(), ship[i].getLetter());
+            primary.setShip(x, y, ori, ship[i].getSize(), ship[i].getLetter());
         }
         
+    }
+    
+    public int[] turn(){
+        int[] coords = new int[2];
+        coords[0] = 0;
+        coords[1] = 1;
+        return coords;
     }
     
     // Checks to see if a ship is hit, and updates everything.
@@ -85,5 +97,9 @@ public class Computer{
     public void setHM(int x, int y, int hm){
      
         tracking.update(x, y, hm);
+    }
+    
+    public boolean lose(){
+        return (shipsLeft == 0);
     }
 }

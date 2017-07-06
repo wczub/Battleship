@@ -1,34 +1,34 @@
 
 import java.util.Scanner;
-import java.util.Character.toLowerCase;
+import java.lang.Character;
 
 public class Driver{
     public static void main(String[] args){
         
         do{
             welcome();
-            Game g;
+            Game g = new Game();
             g.start();
         }while(replay());
         
     }
     
-    public welcome(){
+    public static void welcome(){
         
-        System.out.print("Welcome to Battlefield!");
+        System.out.print("Welcome to Battlefield!\n");
         
         return;
     }
     
     // Asks if the user wants to play the game again
-    public boolean replay(){
+    public static boolean replay(){
         // Loops until they enter proper input 
         while (true){
-            char temp = "";
+            char temp;
         
             System.out.print("Would you like to play again? (y/n)");
             
-            Scanner scanner = new Scaner(System.in);
+            Scanner scanner = new Scanner(System.in);
         
             // Ensures that the input is proper and acceptable.
             try{
@@ -36,14 +36,17 @@ public class Driver{
                 temp = scanner.next().trim().charAt(0);
                 temp = Character.toLowerCase(temp);
                 
-                if (temp != "y" && temp != "n")
-                    throw 11;
+                if (temp != 'y' && temp != 'n')
+                    throw new Error();
+                else if (temp == 'y')
+                    return true;
+                else 
+                    return false;
                     
             } catch (Exception e){
                 System.out.println("Error: Invalid input!\nPlease enter a 'y' or an 'n' only.");
             }
-            return temp;
+            
         }
-        
     }
 }

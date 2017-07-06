@@ -43,11 +43,11 @@ public class Game{
         }
         
         if (p1Win && !cWin){
-            System.out.printf("Congratulations %s! You beat the computer!\n", % p1.getName());
-        } else if (!p1win && cWin){
+            System.out.printf("Congratulations %s! You beat the computer!\n", p1.getName());
+        } else if (!p1Win && cWin){
             System.out.printf("Oh no! You lost to the computer!\n");
         } else {
-            System.out.printf("The game has broken!")
+            System.out.printf("The game has broken!");
         }
     }
     
@@ -57,8 +57,7 @@ public class Game{
         
         // Gets the coordinates from the player 
         coords = p1.turn();
-        c.shotFired(coords[0], coords[1]);
-        // Make shotFired return the resulting value wheather it's a hit or miss
+        p1.setHM(coords[0], coords[1], c.shotFired(coords[0], coords[1]));
         
     }
     
@@ -67,7 +66,7 @@ public class Game{
         int coords[] = new int[2];
         
         coords = c.turn();
-        p1.shotFired(coords[0], coords[1]);
+        c.setHM(coords[0], coords[1], p1.shotFired(coords[0], coords[1]));
         
     }
 }
