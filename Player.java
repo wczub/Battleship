@@ -22,10 +22,10 @@ public class Player{
         ship[2] = new Ship("Cruiser", 3, 3);
         ship[3] = new Ship("Submarine", 3, 4);
         ship[4] = new Ship("Destroyer", 2, 5);
-        placeShips();
         name = "Player 1";
         findRow = new char[] {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'};
-        
+        placeShips();
+       
     }
     
     Player(String name){
@@ -38,9 +38,9 @@ public class Player{
         ship[2] = new Ship("Cruiser", 3, 3);
         ship[3] = new Ship("Submarine", 3, 4);
         ship[4] = new Ship("Destroyer", 2, 4);
+        findRow = new char[] {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'};
         placeShips();
         this.name = name;
-        findRow = new char[] {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'};
 
     }
     
@@ -69,26 +69,20 @@ public class Player{
                 // Looops until they enter a proper column number
                 while(true){
                     
-                    try{
-                       System.out.print("Would you like the ship placed verticle or horizontal? (v/h):");
-                        orientation = Character.toLowerCase(scanner.next(".").charAt(0));
-                        
-                        if (orientation != 'v' && orientation != 'h')
-                            throw new Error();
-                        
-                        if (orientation == 'v')
-                            ori = 0;
-                        else 
-                            ori = 1;
-                        
-                        // Breaks out of the while loop with proper input
+                   System.out.print("Would you like the ship placed verticle or horizontal? (v/h):");
+                    orientation = Character.toLowerCase(scanner.next(".").charAt(0));
+                    
+                    if (orientation == 'v'){
+                        ori = 0;
+                        break;   
+                    }else if (orientation == 'h'){
+                        ori = 1;
                         break;
-                    } catch(Exception e){
-                        System.out.println("Error: Invalid input!\nPlease enter the letter 'v' or 'h'!");
                     }
+                        
+                    System.out.println("Error: Invalid input!\nPlease enter the letter 'v' or 'h'!");
                     
                 }
-                
                 
             // checks to makes sure that the placement is valid
             }while(setCheck(x, y, ori, ship[i].getSize()));
@@ -194,27 +188,20 @@ public class Player{
             char row;
             Scanner scanner = new Scanner(System.in);
 
-            try{
-                System.out.print("Please enter the row (a-j):");
-                row = Character.toLowerCase(scanner.next(".").charAt(0));
+            System.out.print("Please enter the row (a-j):");
+            row = Character.toLowerCase(scanner.findInLine(".").charAt(0));
                 
-                // Throws an exception in they didn't enter a letter that is on the grid
-                if (row < 'a' || row > 'j')
-                    throw new Error();
-                    
-                // If it makes it past the throw command, it converts the char into a number
-                for (int k = 0; k < 10; k++){
-                    if (findRow[k] == row){
-                        y = k;
-                        getInput = false;
-                    }
+            // If it makes it past the throw command, it converts the char into a number
+            for (int k = 0; k < 10; k++){
+                
+                if (findRow[k] == row){
+                    System.out.println("here");
+                    y = k;
+                    getInput = false;
                 }
-                
-                // Breaks out of the while loop with proper input
-                
-            } catch(Exception e){
-                System.out.println("Error: Invalid input!");
             }
+                
+             
         }
         
         return y;
@@ -227,22 +214,13 @@ public class Player{
         // Looops until they enter a proper column number
         while(true){
             
-            try{
-                System.out.print("Please enter the column number (1-10):");
-                x = scanner.nextInt();
-                
-                // Throws exception if they entered a number that is too small or too large
-                if (x < 1 || x > 10)
-                    throw new Error();
-                
-                // Breaks out of the while loop with proper input
-                break;
-            } catch(Exception e){
-                System.out.println("Error: Invalid input!\nPlease enter a number from 1-10!");
-            }
+            System.out.print("Please enter the column number (1-10):");
+            x = scanner.nextInt();
+            
+            if (x >= 1 & x <= 10)
+                return x;
             
         }
-        return x;
     }
     
     public String getName(){

@@ -1,8 +1,2 @@
-Board.class
-Computer.class
-Driver.class
-Game.class
-Player.classs
-Ship.class
-statHit.txt
+*.class
 Errors
