@@ -195,7 +195,6 @@ public class Player{
             for (int k = 0; k < 10; k++){
                 
                 if (findRow[k] == row){
-                    System.out.println("here");
                     y = k;
                     getInput = false;
                 }
