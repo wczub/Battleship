@@ -31,7 +31,7 @@ public class Board{
         System.out.println("\n"+ name + " grid.");
         System.out.print("  ");
         for (int i = 0; i < 10; i++)
-            System.out.printf("%d ", i);
+            System.out.printf("%d ", i + 1);
         System.out.println("");
         
         // prints out the letter, followed by the characters for the grid
