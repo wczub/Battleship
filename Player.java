@@ -37,7 +37,7 @@ public class Player{
         ship[1] = new Ship("Battleship", 4, 2);
         ship[2] = new Ship("Cruiser", 3, 3);
         ship[3] = new Ship("Submarine", 3, 4);
-        ship[4] = new Ship("Destroyer", 2, 4);
+        ship[4] = new Ship("Destroyer", 2, 5);
         findRow = new char[] {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'};
         placeShips();
         this.name = name;
@@ -60,10 +60,10 @@ public class Player{
                 
                 Scanner scanner = new Scanner(System.in);
                 
-                System.out.printf("Please enter the top-left most spot for %s which is %d spots long.", ship[i].getName(), ship[i].getSize());
+                System.out.printf("Please enter the top-left most spot for %s which is %d spots long.\n", ship[i].getName(), ship[i].getSize());
                 
+                // Calls helper funtions to get input for coordinates
                 y = getRow();
-                
                 x = getColumn();
                 
                 // Looops until they enter a proper column number
@@ -218,7 +218,7 @@ public class Player{
             x = scanner.nextInt();
             
             if (x >= 1 & x <= 10)
-                return x;
+                return x - 1; // x is given 1-10 but needs to be 0-9 for the array
             
         }
     }
