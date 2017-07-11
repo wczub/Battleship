@@ -36,18 +36,18 @@ public class Computer{
                 // 0 = verticle, 1 = horizontal
                 if (ori == 0){
                     y = r.nextInt(9-ship[i].getSize());
-                    x = r.nextInt(10);
+                    x = r.nextInt(9);
                 }
                 else{
-                    y = r.nextInt(10);
+                    y = r.nextInt(9);
                     x = r.nextInt(9-ship[i].getSize());
                 }
-                
+                int yy = y;
+                int xx = x;
                 for (int j = 0; j < ship[i].getSize(); j++){
                     
                     // Allows me to not have to change the original x or y value
-                    int yy = y;
-                    int xx = x;
+                    
                     // checks to see if spot it is placed is empty
                     if (!primary.checkEmpty(xx,yy)){
                         nextShip = false;
@@ -61,7 +61,7 @@ public class Computer{
                     else
                         xx++;
                 }
-            } while(nextShip);
+            } while(!nextShip);
             
             ship[i].setSpot(x, y, ori);
             primary.setShip(x, y, ori, ship[i].getSize(), ship[i].getLetter());
