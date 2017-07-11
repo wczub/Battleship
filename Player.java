@@ -85,7 +85,7 @@ public class Player{
                 }
                 
             // checks to makes sure that the placement is valid
-            }while(setCheck(x, y, ori, ship[i].getSize()));
+            }while(!setCheck(x, y, ori, ship[i].getSize()));
             
             // If the code gets to here it means the user entered input properly for all three fields
             // and the placement is in a valid location then it sets the placement of the ship.
