@@ -144,15 +144,15 @@ public class Player{
         System.out.println("It is your turn! ");
         do {
             
-            coords[0] = getRow();
-            coords[1] = getColumn();
+            coords[1] = getRow();
+            coords[0] = getColumn();
             
             // If the player doesn't choose an empty spot, then they have to enter a new spot
             if (tracking.checkEmpty(coords[0], coords[1]))
                 endTurn = true;
             else
                 System.out.println("Error: You have already fired there.");
-        } while (endTurn);
+        } while (!endTurn);
         return coords;
     }
 
@@ -162,15 +162,15 @@ public class Player{
         for (int i = 0; i < 5; i++){
             if (ship[i].checkHit(x, y)){
                 System.out.printf("Computer has hit your %s!", ship[i].getName());
-                primary.update(x, y, 7);
+                primary.update(x, y, 6);
                 
-                // Returns 7 to signal a hit to be placed on their grid
-                return 7;
+                // Returns 6 to signal a hit to be placed on their grid
+                return 6;
             }
         }
         
-        // Returns 8 to signal a miss to be placed on the grid
-        return 8;
+        // Returns 7 to signal a miss to be placed on the grid
+        return 7;
     }
     
     // Updates the grid to show a hit or miss after each turn

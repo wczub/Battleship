@@ -25,12 +25,12 @@ public class Computer{
     // Places ships randomly across the grid
     private void placeShips(){
         Random r = new Random();
-        
+        boolean nextShip = true;
         for (int i = 0; i < 5; i++){
-            boolean nextShip = true;
+            
             int x, y, ori;
             do {
-                
+                nextShip = true;
                 ori = r.nextInt(100) % 2;
                 
                 // 0 = verticle, 1 = horizontal
@@ -42,15 +42,18 @@ public class Computer{
                     y = r.nextInt(9);
                     x = r.nextInt(9-ship[i].getSize());
                 }
+                System.out.printf("x: %d, y: %d, ori: %d\n", x, y, ori);
+                
+                // Allows me to not have to change the original x or y value
                 int yy = y;
                 int xx = x;
                 for (int j = 0; j < ship[i].getSize(); j++){
-                    
-                    // Allows me to not have to change the original x or y value
+                System.out.println("For loop "  + j);
                     
                     // checks to see if spot it is placed is empty
                     if (!primary.checkEmpty(xx,yy)){
                         nextShip = false;
+                        System.out.println("primary check empty");
                         continue;
                     }
                         
@@ -70,9 +73,14 @@ public class Computer{
     }
     
     public int[] turn(){
+        Random r = new Random();
         int[] coords = new int[2];
-        coords[0] = 0;
-        coords[1] = 1;
+        
+        // Loops while the random location is not empty
+        do{
+            coords[0] = r.nextInt(9);
+            coords[1] = r.nextInt(9);
+        }while(!primary.checkEmpty(coords[0], coords[1]));
         return coords;
     }
     
@@ -82,15 +90,15 @@ public class Computer{
         for (int i = 0; i < 5; i++){
             if (ship[i].checkHit(x, y)){
                 System.out.printf("You have hit their %s!", ship[i].getName());
-                primary.update(x, y, 7);
+                primary.update(x, y, 6);
                 
-                // Returns 7 to signal a hit to be placed on their grid
-                return 7;
+                // Returns 6 to signal a hit to be placed on their grid
+                return 6;
             }
         }
     
-        // Returns 8 to signal a miss to be placed on the grid
-        return 8;
+        // Returns 7 to signal a miss to be placed on the grid
+        return 7;
     }
     
     // Updates the grid to show a hit or miss after each turn
