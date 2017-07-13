@@ -1,5 +1,10 @@
 # Battleship
 ## What is it
-This is a text based version of the classic game Battleship. The program will only be playable with singleplayer. This is to allow the development of a more advanced computer opponent. 
+This is a text based version of the classic game Battleship. 
+The master branch should always hold a working version of the game.
+Or at least the most bug free. The computer branch is where a lot of future changes will take place.
+
 ## Purpose
-This project is to allow myself to create an AI opponent to play battleship against. The goal is to create an interatively more comprehensive AI. This means that it's going to start with a simple AI that just guesses randomly wherever it wants to. Then i will keep making it more and more comprehensive until it uses statistical information on where the user is most likely to place their ships and where they are most likely to guess. 
+This is just a pet project of mine to have fun attempting to create a difficult Artificial Intelligence.
+No libraries will be used for the AI. I may implement something later on, but for now I want to have fun learning and tinkering.
+ 
