@@ -164,8 +164,7 @@ public class Player{
                 System.out.printf("Computer has hit your %s!", ship[i].getName());
                 primary.update(x, y, 6);
                 
-                ship[i].life--;
-                if (ship[i].life == 0){
+                if (ship[i].isDead()){
                     shipsLeft--;
                 }
                 

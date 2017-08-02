@@ -92,8 +92,7 @@ public class Computer{
                 System.out.printf("You have hit their %s!", ship[i].getName());
                 primary.update(x, y, 6);
                 
-                ship[i].life--;
-                if (ship[i].life == 0){
+                if (ship[i].isDead()){
                     shipsLeft--;
                 }
                 
