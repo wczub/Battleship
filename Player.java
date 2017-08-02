@@ -168,7 +168,9 @@ public class Player{
                 return 6;
             }
         }
-        
+        // Updates your board so you can see where the computer has gone. 
+        // This is mostly for debugging, but I may leave it in.
+        primary.update(x,y,7);
         // Returns 7 to signal a miss to be placed on the grid
         return 7;
     }
