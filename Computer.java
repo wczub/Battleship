@@ -92,6 +92,11 @@ public class Computer{
                 System.out.printf("You have hit their %s!", ship[i].getName());
                 primary.update(x, y, 6);
                 
+                ship[i].life--;
+                if (ship[i].life == 0){
+                    shipsLeft--;
+                }
+                
                 // Returns 6 to signal a hit to be placed on their grid
                 return 6;
             }
