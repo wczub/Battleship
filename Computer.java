@@ -81,6 +81,9 @@ public class Computer{
             coords[0] = r.nextInt(9);
             coords[1] = r.nextInt(9);
         }while(!primary.checkEmpty(coords[0], coords[1]));
+        
+        char[] letter = new char[] {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'};
+        System.out.printf("The Computer fired at  %s%d. ", letter[coords[0]], (coords[1] + 1));
         return coords;
     }
     
@@ -89,13 +92,19 @@ public class Computer{
         
         for (int i = 0; i < 5; i++){
             if (ship[i].checkHit(x, y)){
-                System.out.printf("You have hit their %s!\n", ship[i].getName());
+                
                 primary.update(x, y, 6);
                 
                 if (ship[i].isDead()){
                     shipsLeft--;
+                    
+                    // Seperate return statement to give unique message for ship sinking.
+                    System.out.printf("Hit and Sunk!\n");
+                    return 6;
                 }
                 
+                // For normal non ship sinking hits.
+                System.out.printf("It's a Hit!\n");
                 // Returns 6 to signal a hit to be placed on their grid
                 return 6;
             }
