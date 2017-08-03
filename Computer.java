@@ -83,7 +83,7 @@ public class Computer{
         }while(!primary.checkEmpty(coords[0], coords[1]));
         
         char[] letter = new char[] {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'};
-        System.out.printf("The Computer fired at  %s%d. ", letter[coords[0]], (coords[1] + 1));
+        System.out.printf("\nThe Computer fired at %s%d. ", letter[coords[0]], (coords[1] + 1));
         return coords;
     }
     
@@ -99,12 +99,12 @@ public class Computer{
                     shipsLeft--;
                     
                     // Seperate return statement to give unique message for ship sinking.
-                    System.out.printf("Hit and Sunk!\n");
+                    System.out.printf("Hit and Sunk!");
                     return 6;
                 }
                 
                 // For normal non ship sinking hits.
-                System.out.printf("It's a Hit!\n");
+                System.out.printf("It's a Hit!");
                 // Returns 6 to signal a hit to be placed on their grid
                 return 6;
             }
