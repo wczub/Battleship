@@ -45,6 +45,8 @@ public class Player{
         findRow = new char[] {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'};
         placeShips();
         this.name = name;
+        hit = new int [10][10];
+        popHit();
 
     }
     
