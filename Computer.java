@@ -1,4 +1,6 @@
 import java.util.Random;
+import java.util.Scanner;
+import java.io.File;
 
 
 public class Computer{
@@ -7,6 +9,8 @@ public class Computer{
     private Board primary;
     private Ship[] ship = new Ship[5];
     private int shipsLeft;
+    private int fire[][];
+    private int hit[][];
     
     
     Computer(){
@@ -19,6 +23,7 @@ public class Computer{
         ship[2] = new Ship("Cruiser", 3, 3);
         ship[3] = new Ship("Submarine", 3, 4);
         ship[4] = new Ship("Destroyer", 2, 5);
+        popFireHit();
         placeShips();
     }
     
@@ -122,5 +127,27 @@ public class Computer{
     
     public boolean lose(){
         return (shipsLeft == 0);
+    }
+    
+    // Takes in both files Fire and Hit, and store them into arrays.
+    // They fire will be update here in computer, and hit will be updated in player
+    private void popFireHit(){
+        
+        try{
+            Scanner f = new Scanner(new File("./stat/fire.txt"));
+            Scanner h = new Scanner(new File("./stat/hit.txt"));
+            
+            fire = new int [10][10];
+            hit = new int [10][10];
+            for (int i = 0; i < 10; i++){
+                for (int j = 0; j < 10; j++){
+                    fire[i][j] = f.nextInt();
+                    hit[i][j] = h.nextInt();
+                }
+            }
+        
+        }catch(Exception e){
+            System.out.println("Error: Failed to open files");
+        }
     }
 }
