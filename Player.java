@@ -1,7 +1,8 @@
-
 import java.util.Scanner;
 import java.lang.Character;
-
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 public class Player{
     
@@ -11,6 +12,7 @@ public class Player{
     private int shipsLeft;
     private String name;
     private char[] findRow;
+    private int hit[][];
     
     Player(){
         shipsLeft = 5;
@@ -25,6 +27,8 @@ public class Player{
         name = "Player 1";
         findRow = new char[] {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'};
         placeShips();
+        hit = new int [10][10];
+        popHit();
        
     }
     
@@ -166,6 +170,9 @@ public class Player{
                 System.out.printf("Computer has hit your %s!\n", ship[i].getName());
                 primary.update(x, y, 6);
                 
+                // Updates hit to later be stored back into the file
+                hit[y][x] += 1;
+                
                 if (ship[i].isDead()){
                     shipsLeft--;
                 }
@@ -208,7 +215,6 @@ public class Player{
                 }
             }
                 
-             
         }
         
         return y;
@@ -232,5 +238,35 @@ public class Player{
     
     public String getName(){
         return name;
+    }
+    
+    // Populates the hit array for use in the turn method
+    private void popHit(){
+        
+        Scanner h = new Scanner(File("./stat/hit.txt"));
+        
+        for (int i = 0; i < 10; i++){
+            for (int j = 0; j < 10; j++){
+                hit[i][j] = h.nextInt();
+            }
+        }
+        
+    }
+    
+    // writes the new hit array to the file to save the info for the next game.
+    private void updateHit(){
+        try {
+            PrintWriter writer = new PrintWriter("./stat/hit.txt", "UTF-8");
+            
+            for (int i = 0; i < 10; i++){
+                for (int j = 0; j < 10; j++){
+                    writer.printf("%d ", hit[i][j]);
+                }
+                writer.println();
+            }
+            writer.close();
+        }catch(IOException e){
+            System.out.println("Failed to save Hit to file.");
+        }
     }
 }

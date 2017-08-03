@@ -95,6 +95,9 @@ public class Computer{
     // Checks to see if a ship is hit, and updates everything.
     public int shotFired(int x, int y){
         
+        // Every time the player fires, it increases one to the fire array.
+        fire[y][x] += 1;
+        
         for (int i = 0; i < 5; i++){
             if (ship[i].checkHit(x, y)){
                 
