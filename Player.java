@@ -17,7 +17,7 @@ public class Player{
         tracking = new Board("Tracking");
         primary = new Board("Primary");
         ship = new Ship[5];
-        ship[0] = new Ship("Carrier", 5, 1);
+        ship[0] = new Ship("Aircraft Carrier", 5, 1);
         ship[1] = new Ship("Battleship", 4, 2);
         ship[2] = new Ship("Cruiser", 3, 3);
         ship[3] = new Ship("Submarine", 3, 4);
@@ -33,7 +33,7 @@ public class Player{
         tracking = new Board("Tracking");
         primary = new Board("Primary");
         ship = new Ship[5];
-        ship[0] = new Ship("Carrier", 5, 1);
+        ship[0] = new Ship("Aircraft Carrier", 5, 1);
         ship[1] = new Ship("Battleship", 4, 2);
         ship[2] = new Ship("Cruiser", 3, 3);
         ship[3] = new Ship("Submarine", 3, 4);
