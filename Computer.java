@@ -89,7 +89,7 @@ public class Computer{
         
         for (int i = 0; i < 5; i++){
             if (ship[i].checkHit(x, y)){
-                System.out.printf("You have hit their %s!", ship[i].getName());
+                System.out.printf("You have hit their %s!\n", ship[i].getName());
                 primary.update(x, y, 6);
                 
                 if (ship[i].isDead()){

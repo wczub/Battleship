@@ -161,7 +161,7 @@ public class Player{
         
         for (int i = 0; i < 5; i++){
             if (ship[i].checkHit(x, y)){
-                System.out.printf("Computer has hit your %s!", ship[i].getName());
+                System.out.printf("Computer has hit your %s!\n", ship[i].getName());
                 primary.update(x, y, 6);
                 
                 if (ship[i].isDead()){
