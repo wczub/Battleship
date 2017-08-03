@@ -154,7 +154,7 @@ public class Player{
                 System.out.println("Error: You have already fired there.");
         } while (!endTurn);
         char[] letter = new char[] {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'};
-        System.out.printf("You fired at %s%d. ", letter[coords[1]], (coords[0] + 1));
+        System.out.printf("\n\nYou fired at %s%d. ", letter[coords[1]], (coords[0] + 1));
         return coords;
     }
 
