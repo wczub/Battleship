@@ -156,7 +156,7 @@ public class Computer{
         }
     }
     
-    private void updateFire(){
+    public void updateFire(){
         try {
             PrintWriter writer = new PrintWriter("./stat/fire.txt", "UTF-8");
             

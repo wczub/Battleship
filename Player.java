@@ -243,18 +243,21 @@ public class Player{
     // Populates the hit array for use in the turn method
     private void popHit(){
         
-        Scanner h = new Scanner(File("./stat/hit.txt"));
-        
-        for (int i = 0; i < 10; i++){
-            for (int j = 0; j < 10; j++){
-                hit[i][j] = h.nextInt();
+        try{
+            Scanner h = new Scanner(new File("./stat/hit.txt"));
+            
+            for (int i = 0; i < 10; i++){
+                for (int j = 0; j < 10; j++){
+                    hit[i][j] = h.nextInt();
+                }
             }
+        } catch(IOException e){
+            System.out.println("Failed to open hit.txt");
         }
-        
     }
     
     // writes the new hit array to the file to save the info for the next game.
-    private void updateHit(){
+    public void updateHit(){
         try {
             PrintWriter writer = new PrintWriter("./stat/hit.txt", "UTF-8");
             
