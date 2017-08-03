@@ -42,6 +42,7 @@ public class Game{
             
         }
         p1.updateHit();
+        c.updateFire();
         if (p1Win && !cWin){
             System.out.printf("Congratulations %s! You beat the computer!\n", p1.getName());
         } else if (!p1Win && cWin){

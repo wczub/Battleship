@@ -1,6 +1,8 @@
 import java.util.Random;
 import java.util.Scanner;
 import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 
 public class Computer{
@@ -151,6 +153,22 @@ public class Computer{
         
         }catch(Exception e){
             System.out.println("Error: Failed to open files");
+        }
+    }
+    
+    private void updateFire(){
+        try {
+            PrintWriter writer = new PrintWriter("./stat/fire.txt", "UTF-8");
+            
+            for (int i = 0; i < 10; i++){
+                for (int j = 0; j < 10; j++){
+                    writer.printf("%d ", fire[i][j]);
+                }
+                writer.println();
+            }
+            writer.close();
+        }catch(IOException e){
+            System.out.println("Failed to save Fire to file.");
         }
     }
 }
