@@ -30,7 +30,7 @@ public class Computer{
         ship[4] = new Ship("Destroyer", 2, 5);
         popFireHit();
         placeShips();
-        prevCO[] = new int[] {-1, -1};
+        prevCO = new int[] {-1, -1};
         prevHit = false;
         checkNum = 0;
     }
@@ -101,27 +101,27 @@ public class Computer{
                 // If a spot is not empty it will go back through the while loop
                 // This is completely unoptimized. Furture optimizations later
                 if (checkNum == 1){
-                    coords[0] = prevC0[0] - 1;
-                    coords[1] = prevC0[1];
-                    if (oneTen(coords[0]) || oneten(coords[1]))
+                    coords[0] = prevCO[0] - 1;
+                    coords[1] = prevCO[1];
+                    if (oneTen(coords[0]) || oneTen(coords[1]))
                         checkNum += 1;
                 }
                 if (checkNum == 2){
-                    coords[0] = prevC0[0] + 1;
-                    coords[1] = prevC0[1];
-                    if (oneTen(coords[0]) || oneten(coords[1]))
+                    coords[0] = prevCO[0] + 1;
+                    coords[1] = prevCO[1];
+                    if (oneTen(coords[0]) || oneTen(coords[1]))
                         checkNum += 1;
                 }
                 if (checkNum == 3){
-                    coords[0] = prevC0[0];
-                    coords[1] = prevC0[1] - 1;
-                    if (oneTen(coords[0]) || oneten(coords[1]))
+                    coords[0] = prevCO[0];
+                    coords[1] = prevCO[1] - 1;
+                    if (oneTen(coords[0]) || oneTen(coords[1]))
                         checkNum += 1;
                 }
                 if (checkNum == 4){
-                    coords[0] = prevC0[0];
-                    coords[1] = prevC0[1] + 1;
-                    if (oneTen(coords[0]) || oneten(coords[1]))
+                    coords[0] = prevCO[0];
+                    coords[1] = prevCO[1] + 1;
+                    if (oneTen(coords[0]) || oneTen(coords[1]))
                         checkNum += 1;
                     prevHit = false;
                     checkNum = 0;
