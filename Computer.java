@@ -13,6 +13,9 @@ public class Computer{
     private int shipsLeft;
     private int fire[][];
     private int hit[][];
+    private int prevCO[];
+    private int checkNum;
+    private boolean prevHit;
     
     
     Computer(){
@@ -27,6 +30,9 @@ public class Computer{
         ship[4] = new Ship("Destroyer", 2, 5);
         popFireHit();
         placeShips();
+        prevCO[] = new int[] {-1, -1};
+        prevHit = false;
+        checkNum = 0;
     }
     
     // Places ships randomly across the grid
@@ -79,19 +85,77 @@ public class Computer{
         
     }
     
+    // Searches for ships in a checkerboard pattern. Ex: only looking at the white squares
+    // When it finds a ship, it searches the four squares around it.
     public int[] turn(){
         Random r = new Random();
         int[] coords = new int[2];
         
         // Loops while the random location is not empty
         do{
-            coords[0] = r.nextInt(9);
-            coords[1] = r.nextInt(9);
-        }while(!primary.checkEmpty(coords[0], coords[1]));
+            if (prevHit && checkNum < 4){
+                checkNum += 1;
+                
+                // If there was a previous hit, then it checks the adjacent squares
+                // If a square is out of bounds, it goes to the next square.
+                // If a spot is not empty it will go back through the while loop
+                // This is completely unoptimized. Furture optimizations later
+                if (checkNum == 1){
+                    coords[0] = prevC0[0] - 1;
+                    coords[1] = prevC0[1];
+                    if (oneTen(coords[0]) || oneten(coords[1]))
+                        checkNum += 1;
+                }
+                if (checkNum == 2){
+                    coords[0] = prevC0[0] + 1;
+                    coords[1] = prevC0[1];
+                    if (oneTen(coords[0]) || oneten(coords[1]))
+                        checkNum += 1;
+                }
+                if (checkNum == 3){
+                    coords[0] = prevC0[0];
+                    coords[1] = prevC0[1] - 1;
+                    if (oneTen(coords[0]) || oneten(coords[1]))
+                        checkNum += 1;
+                }
+                if (checkNum == 4){
+                    coords[0] = prevC0[0];
+                    coords[1] = prevC0[1] + 1;
+                    if (oneTen(coords[0]) || oneten(coords[1]))
+                        checkNum += 1;
+                    prevHit = false;
+                    checkNum = 0;
+                }
+                
+            } else {
+                // Both numbers need to be odd or both even to stay on the grid
+                coords[0] = r.nextInt(5) * 2;
+                coords[1] = r.nextInt(5) * 2;
+                
+                // This allows the numbers to randomly stay odd, or be even.
+                if (r.nextInt(9) % 2 == 0){
+        
+                    coords[0] += 1;
+                    coords[1] += 1;
+                }
+            }
+        }while(!tracking.checkEmpty(coords[0], coords[1]));
+        
+        // prevHit doesn't get reset until after all four spots checked.
+        // then and only then will prevCO update with the new random spot.
+        if (!prevHit){
+            prevCO[0] = coords[0];
+            prevCO[1] = coords[1];
+        }
         
         char[] letter = new char[] {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'};
         System.out.printf("\nThe Computer fired at %s%d. ", letter[coords[0]], (coords[1] + 1));
         return coords;
+    }
+    
+    // Used in turn to go to next square to check if it ends up outside the playing field.
+    private Boolean oneTen(int a){
+        return (a < 0 || a > 9);
     }
     
     // Checks to see if a ship is hit, and updates everything.
@@ -127,6 +191,10 @@ public class Computer{
     // Updates the grid to show a hit or miss after each turn
     public void setHM(int x, int y, int hm){
      
+        // Lets the computer know they got a hit.
+        if (hm == 6)
+            prevHit = true;
+            
         tracking.update(x, y, hm);
     }
     
@@ -156,6 +224,7 @@ public class Computer{
         }
     }
     
+    // Takes the new fire array and stores in in a file.
     public void updateFire(){
         try {
             PrintWriter writer = new PrintWriter("./stat/fire.txt", "UTF-8");
