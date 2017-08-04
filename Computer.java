@@ -149,7 +149,7 @@ public class Computer{
         }
         
         char[] letter = new char[] {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'};
-        System.out.printf("\nThe Computer fired at %s%d. ", letter[coords[0]], (coords[1] + 1));
+        System.out.printf("\nThe Computer fired at %s%d. ", letter[coords[1]], (coords[0] + 1));
         return coords;
     }
     
