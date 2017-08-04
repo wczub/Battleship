@@ -55,7 +55,11 @@ public class Board{
     // checks to see if the spot is empty for placing ships, and for fast check to see
     // if the player/computer missed completely.
     public boolean checkEmpty(int x, int y){
-        return grid[y][x] == 0;
+        // If statement to deal with bad input from computer.
+        if (x >= 0 && x <= 9 && y >= 0 && y <= 9)
+            return grid[y][x] == 0;
+        else
+            return false;
     }
     
     public void setShip(int x, int y, int ori, int size, int ship){
