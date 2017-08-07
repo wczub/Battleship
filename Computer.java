@@ -55,18 +55,15 @@ public class Computer{
                     y = r.nextInt(9);
                     x = r.nextInt(9-ship[i].getSize());
                 }
-                System.out.printf("x: %d, y: %d, ori: %d\n", x, y, ori);
                 
                 // Allows me to not have to change the original x or y value
                 int yy = y;
                 int xx = x;
                 for (int j = 0; j < ship[i].getSize(); j++){
-                System.out.println("For loop "  + j);
                     
                     // checks to see if spot it is placed is empty
                     if (!primary.checkEmpty(xx,yy)){
                         nextShip = false;
-                        System.out.println("primary check empty");
                         continue;
                     }
                         
